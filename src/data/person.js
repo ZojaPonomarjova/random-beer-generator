@@ -1,0 +1,35 @@
+export const person = {
+  id: 2111,
+  uid: "880e5fc2-1cb7-4529-adc4-2d7434b21867",
+  password: "DMVr41NTi2",
+  first_name: "Milo",
+  last_name: "Harris",
+  username: "milo.harris",
+  email: "milo.harris@email.com",
+  avatar:
+    "https://robohash.org/atqueexcepturiest.png?size=300x300\u0026set=set1",
+  gender: "Genderfluid",
+  phone_number: "+255 823-926-1272 x20426",
+  social_insurance_number: "434874160",
+  date_of_birth: "1979-12-16",
+  employment: {
+    title: "Principal Healthcare Strategist",
+    key_skill: "Organisation",
+  },
+  address: {
+    city: "Yostland",
+    street_name: "Leuschke Crest",
+    street_address: "2990 Friesen Valleys",
+    zip_code: "25694-1615",
+    state: "Montana",
+    country: "United States",
+    coordinates: { lat: -33.30984154424326, lng: 11.372045250467863 },
+  },
+  credit_card: { cc_number: "4422461311369" },
+  subscription: {
+    plan: "Business",
+    status: "Blocked",
+    payment_method: "Cheque",
+    term: "Monthly",
+  },
+};
