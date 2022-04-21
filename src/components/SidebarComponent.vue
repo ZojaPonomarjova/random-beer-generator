@@ -1,17 +1,16 @@
 <template>
   <div class="sidebar-container">
     <div class="image-container">
-      <img
-        src="assets\images\favicon.ico"
-        alt="Фото профиля"
-        class="profile-image"
-      />
+      <img :src="profileUrl" alt="Фото профиля" class="profile-image" />
     </div>
-
-    <SidebarItem description="Имя" :mainText="name" />
-    <SidebarItem description="Фамилия" :mainText="lastName" />
-    <SidebarItem description="Возраст" :mainText="age + ' лет'" />
-    <SidebarItem description="Должность" :mainText="position" />
+    <SidebarItem description="Имя" :mainText="randomPerson.first_name" />
+    <SidebarItem description="Фамилия" :mainText="randomPerson.last_name" />
+    <SidebarItem description="Возраст" :mainText="personAge" />
+    <SidebarItem
+      description="Должность"
+      :mainText="randomPerson.employment.title"
+    />
+    <div class="sidebar-error" v-if="errorText">{{ errorText }}</div>
   </div>
 </template>
 
@@ -31,27 +30,30 @@
   padding-top: 40px;
 }
 .image-container {
-  width: 50px;
-  height: 50px;
+  width: 55px;
+  height: 55px;
   border-radius: 50%;
   background-color: $orange;
 }
 .profile-image {
   max-width: 100%;
+  border-radius: 50%;
+}
+
+.sidebar-error {
+  margin-top: 50px;
+
+  font-family: "OpenSans-Regular";
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+
+  color: $orange;
 }
 </style>
 
 <script>
 import SidebarItem from "./SidebarItem";
-import { person } from "../data/person";
-
-const getAge = (str) => {
-  const dateOfBirth = new Date(str);
-  const today = new Date();
-  const age = today - dateOfBirth;
-
-  return Math.trunc(age / 31557600000);
-};
 
 export default {
   name: "SidebarComponent",
@@ -63,14 +65,23 @@ export default {
   components: {
     SidebarItem,
   },
-  data() {
-    return {
-      name: person.first_name,
-      lastName: person.last_name,
-      age: getAge(person.date_of_birth),
-      position: person.employment.title,
-      // position: undefined,
-    };
+  mounted() {
+    this.$store.dispatch("GET_RANDOM_PERSON");
+  },
+
+  computed: {
+    errorText() {
+      return this.$store.state.errorTextForPerson;
+    },
+    randomPerson() {
+      return this.$store.state.person;
+    },
+    personAge() {
+      return this.$store.getters.PERSON_AGE;
+    },
+    profileUrl() {
+      return this.$store.state.person.avatar;
+    },
   },
 };
 </script>
