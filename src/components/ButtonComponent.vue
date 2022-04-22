@@ -1,5 +1,9 @@
 <template>
-  <button class="button" v-bind:class="[anotherClass]">
+  <button
+    class="button"
+    v-bind:class="[anotherClass]"
+    v-on:click="$emit('handleClick')"
+  >
     <span>{{ buttonText }}</span>
   </button>
 </template>
@@ -11,6 +15,7 @@ export default {
     buttonText: String,
     anotherClass: String,
   },
+  emits: ["handleClick"],
 };
 </script>
 
@@ -108,7 +113,7 @@ export default {
 .button:active {
   top: 2px;
 }
-.chooseButton {
-  margin-top: 40px;
+.choose-button {
+  margin-top: 140px;
 }
 </style>

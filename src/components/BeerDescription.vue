@@ -1,19 +1,23 @@
 <template>
   <div class="content-container">
     <div>
-      <BeerDescriptionItem description="brand" :mainText="brand" />
-      <BeerDescriptionItem description="name" :mainText="name" />
-      <BeerDescriptionItem description="style" :mainText="style" />
-      <BeerDescriptionItem description="hop" :mainText="hop" />
-      <BeerDescriptionItem description="yeast" :mainText="yeast" />
-      <BeerDescriptionItem description="malts" :mainText="malts" />
-      <BeerDescriptionItem description="ibu" :mainText="ibu" />
-      <BeerDescriptionItem description="alcohol" :mainText="alcohol" />
-      <BeerDescriptionItem description="blg" :mainText="blg" />
+      <BeerDescriptionItem description="brand" :mainText="randomBeer.brand" />
+      <BeerDescriptionItem description="name" :mainText="randomBeer.name" />
+      <BeerDescriptionItem description="style" :mainText="randomBeer.style" />
+      <BeerDescriptionItem description="hop" :mainText="randomBeer.hop" />
+      <BeerDescriptionItem description="yeast" :mainText="randomBeer.yeast" />
+      <BeerDescriptionItem description="malts" :mainText="randomBeer.malts" />
+      <BeerDescriptionItem description="ibu" :mainText="randomBeer.ibu" />
+      <BeerDescriptionItem
+        description="alcohol"
+        :mainText="randomBeer.alcohol"
+      />
+      <BeerDescriptionItem description="blg" :mainText="randomBeer.blg" />
     </div>
     <ButtonComponent
       buttonText="Попробовать снова"
       anotherClass="tryAgainButton"
+      v-on:handleClick="onClickGetBeer"
     />
   </div>
 </template>
@@ -50,27 +54,24 @@
 <script>
 import ButtonComponent from "@/components/ButtonComponent";
 import BeerDescriptionItem from "@/components/BeerDescriptionItem";
-import { beer } from "../data/beer";
+import { mapActions } from "vuex";
 
 export default {
   name: "BeerDescription",
-  props: {
-    // product: String,
-    // image: String,
-    // inStock: Boolean,
+  props: {},
+
+  computed: {
+    errorText() {
+      return this.$store.state.errorTextForBeer;
+    },
+    randomBeer() {
+      return this.$store.state.beer;
+    },
   },
-  data() {
-    return {
-      brand: beer.brand,
-      name: beer.name,
-      style: beer.style,
-      hop: beer.hop,
-      yeast: beer.yeast,
-      malts: beer.malts,
-      ibu: beer.ibu,
-      alcohol: beer.alcohol,
-      blg: beer.blg,
-    };
+  methods: {
+    ...mapActions({
+      onClickGetBeer: "GET_RANDOM_BEER",
+    }),
   },
   components: {
     ButtonComponent,

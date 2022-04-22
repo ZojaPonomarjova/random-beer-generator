@@ -2,11 +2,13 @@
   <div class="content-container">
     <h2 class="main-title">Генератор случайного пива</h2>
     <ButtonComponent
-      v-if="chooseButtonIsClicked && !isLoading"
+      v-if="!chooseButtonIsClicked && !isLoading"
       buttonText="Испытать удачу"
-      anotherClass="chooseButton"
+      anotherClass="choose-button"
+      v-on:handleClick="onClickGetBeer"
     />
-    <BeerDescription v-if="!chooseButtonIsClicked && !isLoading" />
+    <div v-if="errorForBeer" class="error-text">{{ errorForBeer }}</div>
+    <BeerDescription v-if="chooseButtonIsClicked && !isLoading" />
     <LoaderBender v-if="isLoading" />
   </div>
 </template>
@@ -30,25 +32,46 @@
   flex-direction: column;
   align-items: center;
 }
+
+.error-text {
+  margin-top: 50px;
+
+  font-family: "OpenSans-Regular";
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+
+  color: $orange;
+}
 </style>
 
 <script>
 import ButtonComponent from "@/components/ButtonComponent";
 import LoaderBender from "@/components/LoaderBender.vue";
 import BeerDescription from "@/components/BeerDescription.vue";
+import { mapActions } from "vuex";
 
 export default {
   name: "ChooseBeer",
-  props: {
-    // product: String,
-    // image: String,
-    // inStock: Boolean,
-  },
+  props: {},
   data() {
     return {
-      isLoading: false,
-      chooseButtonIsClicked: false,
+      // isLoading: false,
+      // chooseButtonIsClicked: false,
     };
+  },
+  computed: {
+    isLoading() {
+      return this.$store.state.isLoading;
+    },
+    chooseButtonIsClicked() {
+      return this.$store.state.chooseButtonIsClicked;
+    },
+  },
+  methods: {
+    ...mapActions({
+      onClickGetBeer: "GET_RANDOM_BEER",
+    }),
   },
   components: {
     ButtonComponent,
