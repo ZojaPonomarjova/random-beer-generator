@@ -2,8 +2,6 @@
   <div>
     <SidebarComponent />
     <main class="main">
-      <!-- <p v-if="isAuth">In Stock</p>
-      <p v-else>Out of Stock</p> -->
       <ChooseBeer />
     </main>
     <FooterComponent />
@@ -12,11 +10,7 @@
 
 <style scoped lang="scss">
 @import "../assets/styles/vars.scss";
-// $orange: #ef6817;
-// $almostBlack: #21201f;
-// $lightGrey: #727271;
-// $grey: #5f605d;
-// $darkGrey: #383838;
+
 div {
   display: flex;
   flex-direction: column;
@@ -24,14 +18,17 @@ div {
 
 .main {
   flex: 1 0 auto;
-
-  // display: flex;
-  // flex-direction: column;
-  // align-items: center;
   margin-left: 300px;
   background-color: $darkGrey;
-  padding-right: 50px;
+  // height: 100%;
+
+  @media screen and (max-width: 768px) {
+    margin-left: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
+
 .footer {
   flex: 0 0 auto;
 

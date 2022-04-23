@@ -48,6 +48,10 @@
   margin-top: 40px;
   margin-left: -60px;
   margin-bottom: 20px;
+
+  @media screen and (max-width: 768px) {
+    margin-left: 0px;
+  }
 }
 </style>
 

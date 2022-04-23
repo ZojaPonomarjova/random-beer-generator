@@ -8,7 +8,9 @@
       v-on:handleClick="onClickGetBeer"
     />
     <div v-if="errorForBeer" class="error-text">{{ errorForBeer }}</div>
-    <BeerDescription v-if="chooseButtonIsClicked && !isLoading" />
+    <BeerDescription
+      v-if="chooseButtonIsClicked && !isLoading && !errorForBeer"
+    />
     <LoaderBender v-if="isLoading" />
   </div>
 </template>
@@ -20,11 +22,16 @@
   font-size: 30px;
   font-weight: 700;
   font-style: normal;
-
-  color: $orange;
   letter-spacing: 1.5px;
 
+  color: $orange;
+
   margin: 20px 0 40px;
+  text-align: center;
+
+  @media screen and (max-width: 768px) {
+    margin: 60px 10px 30px 10px;
+  }
 }
 
 .content-container {
@@ -34,12 +41,13 @@
 }
 
 .error-text {
-  margin-top: 50px;
+  margin-top: 100px;
+  text-align: center;
 
   font-family: "OpenSans-Regular";
   font-weight: 400;
   font-style: normal;
-  font-size: 14px;
+  font-size: 20px;
 
   color: $orange;
 }
@@ -66,6 +74,9 @@ export default {
     },
     chooseButtonIsClicked() {
       return this.$store.state.chooseButtonIsClicked;
+    },
+    errorForBeer() {
+      return this.$store.state.errorTextForBeer;
     },
   },
   methods: {

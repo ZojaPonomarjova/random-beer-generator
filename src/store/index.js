@@ -16,7 +16,7 @@ const getAge = (str) => {
   }
   return null;
 };
-//lastDigit = sampleNumber % 10
+
 export default createStore({
   state: {
     person: {
@@ -45,6 +45,7 @@ export default createStore({
     },
     isLoading: false,
     chooseButtonIsClicked: false,
+    minimizeSidebar: true,
   },
   getters: {
     PERSON_AGE: (state) => {
@@ -70,17 +71,16 @@ export default createStore({
     SET_CHOOSEBUTTON_IS_CLICKED: (state, payload) => {
       state.chooseButtonIsClicked = payload;
     },
+    TOGGLE_SIDEBAR: (state, payload) => {
+      state.minimizeSidebar = payload;
+    },
   },
   actions: {
     GET_RANDOM_PERSON: (context, person) => {
-      // let randomPerson;
-
       fetch("https://random-data-api.com/api/users/random_user")
         .then((response) => response.json())
         .then((data) => {
           try {
-            console.log(data);
-
             if (data) {
               context.commit("SET_RANDOM_PERSON", data);
             }
@@ -106,42 +106,48 @@ export default createStore({
         });
     },
     GET_RANDOM_BEER: (context, beer) => {
-      console.log("store");
-      // let randomBeer;
       context.commit("SET_IS_LOADING", true);
       context.commit("SET_CHOOSEBUTTON_IS_CLICKED", true);
-      fetch("https://random-data-api.com/api/beer/random_beer")
-        .then((response) => response.json())
-        .then((data) => {
-          try {
-            console.log(data);
+      setTimeout(() => {
+        fetch("https://random-data-api.com/api/beer/random_beer")
+          .then((response) => response.json())
+          .then((data) => {
+            try {
+              if (data) {
+                context.commit("SET_RANDOM_BEER", data);
+              }
 
-            if (data) {
-              context.commit("SET_RANDOM_BEER", data);
-            }
+              if (!data) {
+                throw new Error(
+                  "Попробуйте повторить запрос: пришли некорректные данные."
+                );
+              }
+            } catch (error) {
+              console.log(error);
 
-            if (!data) {
-              throw new Error(
-                "Попробуйте повторить запрос: пришли некорректные данные."
-              );
+              context.commit("SET_ERROR_FOR_BEER", error);
             }
-          } catch (error) {
+          })
+          .catch((error) => {
             console.log(error);
 
-            context.commit("SET_ERROR_FOR_BEER", error);
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-
-          context.commit(
-            "SET_ERROR_FOR_BEER",
-            "Проверьте свое соединение с сетью"
-          );
-        })
-        .finally(() => {
-          context.commit("SET_IS_LOADING", false);
-        });
+            context.commit(
+              "SET_ERROR_FOR_BEER",
+              "Проверьте свое соединение с сетью"
+            );
+          })
+          .finally(() => {
+            context.commit("SET_IS_LOADING", false);
+          });
+      }, 5000);
+    },
+    MINIMIZE_SIDEBAR: (context) => {
+      const checkbox = document.querySelector(".menu-toggle-input");
+      if (checkbox.checked) {
+        context.commit("TOGGLE_SIDEBAR", false);
+      } else {
+        context.commit("TOGGLE_SIDEBAR", true);
+      }
     },
   },
   modules: {},

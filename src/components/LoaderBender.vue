@@ -7,7 +7,7 @@
 <style scoped lang="scss">
 .loader-img-container {
   margin: 0px auto;
-  width: 50%;
+  width: 49%;
 }
 
 .loader-image {

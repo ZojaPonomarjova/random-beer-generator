@@ -16,6 +16,10 @@ export default {
 
 <style scoped lang="scss">
 @import "../assets/styles/vars.scss";
+
+.footer {
+  z-index: 10;
+}
 .footer-content {
   display: flex;
   flex-wrap: wrap;
