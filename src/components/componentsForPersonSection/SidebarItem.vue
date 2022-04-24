@@ -1,3 +1,4 @@
+/*компонент для отображения данных пользователя или индикатора загрузки */
 <template>
   <p class="sidebar-text">
     <span class="thin-text">{{ description }}</span
@@ -7,7 +8,7 @@
 </template>
 
 <style scoped lang="scss">
-@import "../assets/styles/vars.scss";
+@import "../../assets/styles/vars.scss";
 .sidebar-text {
   display: flex;
   flex-direction: column;
@@ -39,7 +40,7 @@
 </style>
 
 <script>
-import LoaderLetters from "./LoaderLetters.vue";
+import LoaderLetters from "../loaders/LoaderLetters.vue";
 export default {
   name: "SidebarItem",
   props: {

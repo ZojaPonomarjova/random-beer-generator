@@ -1,3 +1,4 @@
+/*лоадер для сайдбара */
 <template>
   <div id="fountainTextG">
     <div id="fountainTextG_1" class="fountainTextG">З</div>

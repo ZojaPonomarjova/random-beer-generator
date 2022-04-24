@@ -1,3 +1,4 @@
+/*Компонент для отображения данных пользователя */
 <template>
   <aside
     class="sidebar-container"
@@ -6,9 +7,8 @@
     <div
       class="menu-toggle"
       :class="[minimizeSidebar ? '' : 'menu-toggle-moved']"
+      v-on:click="handleClickToggleSidebar"
     >
-      <input type="checkbox" class="menu-toggle-input" v-on:change="onChange" />
-
       <span></span>
       <span></span>
       <span></span>
@@ -27,8 +27,52 @@
   </aside>
 </template>
 
+<script>
+import SidebarItem from "./SidebarItem";
+import { mapActions } from "vuex";
+
+export default {
+  name: "SidebarComponent",
+
+  components: {
+    SidebarItem,
+  },
+  mounted() {
+    this.$store.dispatch("getRandomPerson");
+  },
+
+  computed: {
+    //ошибка при загрузке
+    errorText() {
+      return this.$store.getters.errorTextForPerson;
+    },
+    //данные пользователя
+    randomPerson() {
+      return this.$store.getters.person;
+    },
+    //вычисленный возраст
+    personAge() {
+      return this.$store.getters.personAge;
+    },
+    //src для фото профиля
+    profileUrl() {
+      return this.$store.getters.avatar;
+    },
+    //состояние для разворачивания сайдбара на маленьких экранах
+    minimizeSidebar() {
+      return this.$store.getters.minimizeSidebar;
+    },
+  },
+  methods: {
+    ...mapActions({
+      handleClickToggleSidebar: "minimizeSidebar",
+    }),
+  },
+};
+</script>
+
 <style scoped lang="scss">
-@import "../assets/styles/vars.scss";
+@import "../../assets/styles/vars.scss";
 .sidebar-container {
   position: fixed;
   top: 0px;
@@ -147,62 +191,18 @@
     transform-origin: 0% 100%;
   }
 
-  .menu-toggle-input:checked ~ span {
+  .menu-toggle-moved span {
     opacity: 1;
     transform: rotate(45deg) translate(-15px, -10px);
   }
 
-  .menu-toggle-input:checked ~ span:nth-last-child(3) {
+  .menu-toggle-moved span:nth-last-child(3) {
     opacity: 0;
     transform: rotate(0deg) scale(0.2, 0.2);
   }
 
-  .menu-toggle-input:checked ~ span:nth-last-child(2) {
+  .menu-toggle-moved span:nth-last-child(2) {
     transform: rotate(-45deg) translate(-8px, 6px);
   }
 }
 </style>
-
-<script>
-import SidebarItem from "./SidebarItem";
-import { mapActions } from "vuex";
-
-export default {
-  name: "SidebarComponent",
-  props: {
-    product: String,
-
-    inStock: Boolean,
-  },
-  components: {
-    SidebarItem,
-  },
-  mounted() {
-    this.$store.dispatch("GET_RANDOM_PERSON");
-  },
-
-  computed: {
-    errorText() {
-      return this.$store.state.errorTextForPerson;
-    },
-    randomPerson() {
-      return this.$store.state.person;
-    },
-    personAge() {
-      return this.$store.getters.PERSON_AGE;
-    },
-    profileUrl() {
-      return this.$store.state.person.avatar;
-    },
-    minimizeSidebar() {
-      return this.$store.state.minimizeSidebar;
-    },
-  },
-  methods: {
-    ...mapActions({
-      onChange: "MINIMIZE_SIDEBAR",
-    }),
-  },
-};
-//onChange
-</script>

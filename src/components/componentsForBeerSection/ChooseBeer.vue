@@ -1,3 +1,4 @@
+/*корневой компонент для секции с пивом */
 <template>
   <div class="content-container">
     <h2 class="main-title">Генератор случайного пива</h2>
@@ -15,8 +16,44 @@
   </div>
 </template>
 
+<script>
+import ButtonComponent from "@/components/UI/ButtonComponent.vue";
+import LoaderBender from "@/components/loaders/LoaderBender.vue";
+import BeerDescription from "@/components/componentsForBeerSection/BeerDescription.vue";
+import { mapActions } from "vuex";
+
+export default {
+  name: "ChooseBeer",
+
+  computed: {
+    //состояние для индикатора загрузки
+    isLoading() {
+      return this.$store.getters.isLoading;
+    },
+    //состояние для переключения между первым экраном и описанием пива
+    chooseButtonIsClicked() {
+      return this.$store.getters.chooseButtonIsClicked;
+    },
+    //состояние для ошибки при загрузке
+    errorForBeer() {
+      return this.$store.getters.errorTextForBeer;
+    },
+  },
+  methods: {
+    ...mapActions({
+      onClickGetBeer: "getRandomBeer",
+    }),
+  },
+  components: {
+    ButtonComponent,
+    LoaderBender,
+    BeerDescription,
+  },
+};
+</script>
+
 <style scoped lang="scss">
-@import "../assets/styles/vars.scss";
+@import "../../assets/styles/vars.scss";
 .main-title {
   font-family: "Roboto-Bold";
   font-size: 30px;
@@ -52,42 +89,3 @@
   color: $orange;
 }
 </style>
-
-<script>
-import ButtonComponent from "@/components/ButtonComponent";
-import LoaderBender from "@/components/LoaderBender.vue";
-import BeerDescription from "@/components/BeerDescription.vue";
-import { mapActions } from "vuex";
-
-export default {
-  name: "ChooseBeer",
-  props: {},
-  data() {
-    return {
-      // isLoading: false,
-      // chooseButtonIsClicked: false,
-    };
-  },
-  computed: {
-    isLoading() {
-      return this.$store.state.isLoading;
-    },
-    chooseButtonIsClicked() {
-      return this.$store.state.chooseButtonIsClicked;
-    },
-    errorForBeer() {
-      return this.$store.state.errorTextForBeer;
-    },
-  },
-  methods: {
-    ...mapActions({
-      onClickGetBeer: "GET_RANDOM_BEER",
-    }),
-  },
-  components: {
-    ButtonComponent,
-    LoaderBender,
-    BeerDescription,
-  },
-};
-</script>

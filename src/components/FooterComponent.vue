@@ -1,3 +1,4 @@
+/*компонент для отображения футера */
 <template>
   <footer class="footer">
     <p class="footer-content">

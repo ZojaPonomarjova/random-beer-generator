@@ -1,3 +1,4 @@
+/*компонент для строки в списке характеристик */
 <template>
   <p class="beer-description-text">
     <span class="thin-text" v-if="description">{{ description }}</span
@@ -6,7 +7,7 @@
 </template>
 
 <style scoped lang="scss">
-@import "../assets/styles/vars.scss";
+@import "../../assets/styles/vars.scss";
 .beer-description-text {
   display: flex;
   flex-direction: row;

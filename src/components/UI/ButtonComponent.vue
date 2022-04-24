@@ -1,3 +1,4 @@
+/*компонент для кнопки */
 <template>
   <button
     class="button"
@@ -20,7 +21,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../assets/styles/vars.scss";
+@import "../../assets/styles/vars.scss";
 
 .button {
   width: 180px;

@@ -1,3 +1,4 @@
+/*корневой компонент */
 <template>
   <div>
     <SidebarComponent />
@@ -20,7 +21,6 @@ div {
   flex: 1 0 auto;
   margin-left: 300px;
   background-color: $darkGrey;
-  // height: 100%;
 
   @media screen and (max-width: 768px) {
     margin-left: 0px;
@@ -38,11 +38,11 @@ div {
 
 <script>
 import FooterComponent from "@/components/FooterComponent";
-import ChooseBeer from "@/components/ChooseBeer";
-import SidebarComponent from "@/components/SidebarComponent.vue";
+import ChooseBeer from "@/components/componentsForBeerSection/ChooseBeer.vue";
+import SidebarComponent from "@/components/componentsForPersonSection/SidebarComponent.vue";
 
 export default {
-  name: "MainView",
+  name: "MainComponent",
   components: {
     ChooseBeer,
     FooterComponent,

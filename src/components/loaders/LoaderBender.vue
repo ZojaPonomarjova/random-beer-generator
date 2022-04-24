@@ -1,3 +1,4 @@
+/*лоадер с Бендером */
 <template>
   <div class="loader-img-container">
     <img src="assets/images/bender.gif" alt="Bender" class="loader-image" />

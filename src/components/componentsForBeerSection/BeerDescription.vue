@@ -1,3 +1,4 @@
+/*компонент для описания характеристик пива */
 <template>
   <div class="content-container">
     <div>
@@ -22,8 +23,39 @@
   </div>
 </template>
 
+<script>
+import ButtonComponent from "@/components/UI/ButtonComponent.vue";
+import BeerDescriptionItem from "@/components/componentsForBeerSection/BeerDescriptionItem.vue";
+import { mapActions } from "vuex";
+
+export default {
+  name: "BeerDescription",
+  props: {},
+
+  computed: {
+    //состояние для ошибки при загрузке
+    errorText() {
+      return this.$store.getters.errorTextForBeer;
+    },
+    //состояние для описания пива
+    randomBeer() {
+      return this.$store.getters.beer;
+    },
+  },
+  methods: {
+    ...mapActions({
+      onClickGetBeer: "getRandomBeer",
+    }),
+  },
+  components: {
+    ButtonComponent,
+    BeerDescriptionItem,
+  },
+};
+</script>
+
 <style scoped lang="scss">
-@import "../assets/styles/vars.scss";
+@import "../../assets/styles/vars.scss";
 .main-title {
   font-family: "Roboto-Bold";
   font-size: 30px;
@@ -66,32 +98,3 @@
   }
 }
 </style>
-
-<script>
-import ButtonComponent from "@/components/ButtonComponent";
-import BeerDescriptionItem from "@/components/BeerDescriptionItem";
-import { mapActions } from "vuex";
-
-export default {
-  name: "BeerDescription",
-  props: {},
-
-  computed: {
-    errorText() {
-      return this.$store.state.errorTextForBeer;
-    },
-    randomBeer() {
-      return this.$store.state.beer;
-    },
-  },
-  methods: {
-    ...mapActions({
-      onClickGetBeer: "GET_RANDOM_BEER",
-    }),
-  },
-  components: {
-    ButtonComponent,
-    BeerDescriptionItem,
-  },
-};
-</script>
