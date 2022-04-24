@@ -1,7 +1,6 @@
 <template>
   <footer class="footer">
     <p class="footer-content">
-      <span class="footer-task footer-text">Тестовое задание </span>
       <span class="footer-name footer-text">Пономарева Зоя</span>
       <span class="footer-copy footer-text">&copy; 2022</span>
     </p>

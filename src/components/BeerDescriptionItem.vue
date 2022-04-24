@@ -9,12 +9,18 @@
 @import "../assets/styles/vars.scss";
 .beer-description-text {
   display: flex;
-  // justify-content: space-between;
+  flex-direction: row;
+
   flex-wrap: wrap;
   align-items: flex-start;
 
   padding: 30px 0px 0px 50px;
   margin: 0;
+
+  @media screen and (max-width: 480px) {
+    flex-direction: column;
+    padding: 20px 0px 0px 0px;
+  }
 }
 
 .thin-text {
@@ -28,6 +34,11 @@
   margin-bottom: 5px;
   margin-right: 50px;
   min-width: 50px;
+
+  @media screen and (max-width: 480px) {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 .bold-text {
@@ -37,6 +48,11 @@
   font-size: 18px;
 
   color: $almostWhite;
+
+  @media screen and (max-width: 480px) {
+    width: 100%;
+    text-align: center;
+  }
 }
 </style>
 

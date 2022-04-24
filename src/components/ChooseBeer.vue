@@ -30,7 +30,7 @@
   text-align: center;
 
   @media screen and (max-width: 768px) {
-    margin: 60px 10px 30px 10px;
+    margin: 70px 10px 30px 10px;
   }
 }
 

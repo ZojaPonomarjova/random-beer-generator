@@ -43,7 +43,7 @@
   padding-top: 40px;
 
   @media screen and (max-width: 768px) {
-    left: 0px;
+    position: absolute;
 
     padding: 15px 20px;
 
@@ -82,7 +82,7 @@
     display: block;
     position: relative;
     top: 10px;
-    left: 330px;
+    left: 320px;
 
     width: 40px;
 
@@ -150,8 +150,6 @@
   .menu-toggle-input:checked ~ span {
     opacity: 1;
     transform: rotate(45deg) translate(-15px, -10px);
-    // margin-top: 35px;
-    // margin-bottom: -56px;
   }
 
   .menu-toggle-input:checked ~ span:nth-last-child(3) {
@@ -162,10 +160,6 @@
   .menu-toggle-input:checked ~ span:nth-last-child(2) {
     transform: rotate(-45deg) translate(-8px, 6px);
   }
-
-  // .menu-toggle-input:checked ~ .sidebar-container {
-  //   transform: none;
-  // }
 }
 </style>
 

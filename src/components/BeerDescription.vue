@@ -41,7 +41,19 @@
   flex-direction: column;
   align-items: center;
 
+  width: fit-content;
   height: fit-content;
+  @media screen and (max-width: 480px) {
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  div {
+    width: fit-content;
+    @media screen and (max-width: 480px) {
+      width: 100%;
+    }
+  }
 }
 
 .tryAgainButton {
