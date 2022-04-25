@@ -2,12 +2,21 @@
 <template>
   <div class="content-container">
     <h2 class="main-title">Генератор случайного пива</h2>
-    <ButtonComponent
+    <div
       v-if="!chooseButtonIsClicked && !isLoading"
-      buttonText="Испытать удачу"
-      anotherClass="choose-button"
-      v-on:handleClick="onClickGetBeer"
-    />
+      class="choose-button-container"
+    >
+      <ButtonComponent
+        buttonText="Испытать удачу"
+        anotherClass="choose-button"
+        v-on:handleClick="onClickGetBeer"
+      />
+      <img
+        src="assets\images\futurama_PNG70.png"
+        alt="Bender"
+        class="main-image"
+      />
+    </div>
     <div v-if="errorForBeer" class="error-text">{{ errorForBeer }}</div>
     <BeerDescription
       v-if="chooseButtonIsClicked && !isLoading && !errorForBeer"
@@ -87,5 +96,23 @@ export default {
   font-size: 20px;
 
   color: $orange;
+}
+.choose-button-container {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-image {
+  align-self: flex-end;
+  max-width: 200px;
+  @media screen and (max-width: 768px) {
+    max-width: 40vw;
+
+    margin-top: 20px;
+    margin-right: -20px;
+  }
 }
 </style>

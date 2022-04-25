@@ -8,7 +8,11 @@
 <style scoped lang="scss">
 .loader-img-container {
   margin: 0px auto;
-  width: 49%;
+  width: 47.5%;
+
+  @media screen and (max-width: 768px) {
+    width: 60%;
+  }
 }
 
 .loader-image {

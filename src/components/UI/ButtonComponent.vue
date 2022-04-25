@@ -116,5 +116,8 @@ export default {
 }
 .choose-button {
   margin-top: 140px;
+  @media screen and (max-width: 768px) {
+    margin-top: 40px;
+  }
 }
 </style>
