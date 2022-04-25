@@ -1,6 +1,6 @@
 # Приложение "random-beer-generator".
 
-_Помощь в изучении слов английского языка._
+_Сервис для выбора случайного вида пива._
 
 ---
 
@@ -14,16 +14,9 @@ _Помощь в изучении слов английского языка._
 
     Также добавлен Loader (ожидание загрузки с сервера) и возможность повторить запрос<br>
 
-    <!-- ![GitHub language count](https://img.shields.io/github/languages/count/ZojaPonomarjova/lingua)
-    ![GitHub top language](https://img.shields.io/github/languages/top/ZojaPonomarjova/lingua)
-    ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/ZojaPonomarjova/lingua)
-    ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/ZojaPonomarjova/lingua)
-    ![GitHub last commit](https://img.shields.io/github/last-commit/ZojaPonomarjova/lingua)
-    ![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed-raw/ZojaPonomarjova/lingua) -->
-
 ---
 
-![gif](https://github.com/ZojaPonomarjova/lingua/blob/master/src/assets/images/review2.gif)
+![gif](https://github.com/ZojaPonomarjova/lingua/blob/master/public/assets/images/randomBeerGenerator.gif)
 
 #### Используемые технологии:
 
