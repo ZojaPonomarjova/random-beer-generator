@@ -18,6 +18,10 @@ _Сервис для выбора случайного вида пива._
 
 ![gif](https://github.com/ZojaPonomarjova/random-beer-generator/blob/master/public/assets/images/randomBeerGenerator.gif)
 
+#### GitHub Pages:
+
+[ https://zojaponomarjova.github.io/random-beer-generator/ ](https://zojaponomarjova.github.io/random-beer-generator/)
+
 #### Используемые технологии:
 
 - Vue
